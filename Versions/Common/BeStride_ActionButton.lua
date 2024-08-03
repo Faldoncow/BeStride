@@ -8,7 +8,7 @@ function BeStride:CreateActionButton(buttontype)
 	local name = "BeStride_AB" .. buttontype .. "Mount"
 
 	local br = CreateFrame("Button", name, UIParent, "SecureActionButtonTemplate,ActionButtonTemplate")
-	br:RegisterForClicks("AnyDown")
+	br:RegisterForClicks("AnyUp")
 	br:SetAttribute("type","macro")
 	br:SetAttribute("macrotext",nil)
 	
@@ -41,7 +41,7 @@ function BeStride_ActionButtonRegularMount:PreClick()
 	if BeStride:IsCombat() then
 		return
 	end
-	
+
 	local mount = BeStride:Regular()
 	if mount ~= nil then
 		self:SetAttribute("macrotext",mount)

@@ -121,6 +121,8 @@ end
 function BeStride:Evoker()
 	if not IsFlying() and self:MovementCheck() and self:EvokerHover() then
 		return BeStride_Mount:Evoker()
+	elseif self:IsFlyable() then
+		return BeStride_Mount:EvokerSoar()
 	end
 end
 

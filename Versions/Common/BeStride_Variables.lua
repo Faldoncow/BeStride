@@ -153,6 +153,7 @@ defaults = {
 				},
 				evoker = {
 					hover = true,
+					soar = true,
 				},
 				warlock = {
 					rush = true,

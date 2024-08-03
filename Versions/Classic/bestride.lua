@@ -7,7 +7,8 @@ function BeStride:Version_OnEnable()
     else
         BeStride_Constants.spells.druid.flightform = 33943
     end
-    BeStride_Constants.spells.druid.aquaticform = 1066
+    BeStride_Constants.spells.druid.aquaticform = 1066    
+    BeStride_Constants.spells.evoker.soar = 381322
 end
 
 function BeStride:IsClassicEra()

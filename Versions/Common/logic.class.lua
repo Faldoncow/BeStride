@@ -112,6 +112,8 @@ function BeStride:IsEvokerAndSpecial()
 			return false
 		elseif self:EvokerHover() and self:MovementCheck() then
 			return true
+		elseif self:IsFlyable() then
+			return true
 		else
 			return false
 		end
@@ -819,3 +821,27 @@ function BeStride:EvokerHover()
 		return false
 	end
 end
+
+-- function BeStride:EvokerSoar()
+-- 	if self:IsDruid() then
+-- 		if self:EvokerUseSoar() then
+-- 			return true
+-- 		else
+-- 			return false
+-- 		end
+-- 	else
+-- 		return false
+-- 	end
+-- end
+
+-- function BeStride:EvokerUseSoar()
+-- 	if self:IsEvoker() then
+-- 		--if BeStride:DBGet("settings.classes.evoker.soar") then
+-- 			return true
+-- 		--else
+-- 			--return false
+-- 		--end
+-- 	else
+-- 		return false
+-- 	end
+-- end

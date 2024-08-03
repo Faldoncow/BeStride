@@ -29,9 +29,29 @@ function BeStride:IsDragonRidingZone()
 		if countTable(BeStride_Constants.Riding.Dragonriding.Restricted.Continents) > 0 then
 			local skill,spells = self:GetRidingSkill()
 			local mapID = C_Map.GetBestMapForUnit("player")
-			local continent = BeStride:GetMapUntil(mapID,2)			
+			local continent = BeStride:GetMapUntil(mapID,2)
+			local other = BeStride:GetMapUntil(mapID,3)
+			local dungeon = BeStride:GetMapUntil(mapID,4)
 
-			if continent ~= nil then
+			-- ChatFrame1:AddMessage("[Debug]" .. continent.name,1.0,0,0);
+			-- ChatFrame1:AddMessage("[Debug]" .. other.name,1.0,0,0);
+			-- if dungeon ~= nil then
+			-- 	ChatFrame1:AddMessage("[Debug]" .. dungeon.name .. dungeon.mapID,1.0,0,0);
+			-- end
+
+			if dungeon ~= nil then
+				for key,value in pairsByKeys(BeStride_Constants.Riding.Dragonriding.Restricted.Dungeons) do
+					if dungeon.mapID == key and value.blocked == true then
+						return false
+					elseif dungeon.mapID == key and value.requires ~= nil and spells[value.requires] == true then
+						return true
+					elseif dungeon.mapID == key and value.requires ~= nil then
+						return false
+					end
+				end
+			end
+
+			if continent ~= nil and dungeon == nil then
 				for key,value in pairsByKeys(BeStride_Constants.Riding.Dragonriding.Restricted.Continents) do
 					if continent.mapID == key and value.blocked == true then
 						return false

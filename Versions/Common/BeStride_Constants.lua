@@ -18,6 +18,9 @@ BeStride_Constants = {
 		hunter = {
 			aspectofthecheetah = 186257,
 		},
+		evoker = {
+			soar = 381322
+		}
 	},
 	Zone = {
 		Vashjir = {
@@ -165,6 +168,19 @@ BeStride_Constants = {
 					[1978] = {
 						requires = 376777,
 					},
+				},
+				Zones = {
+					[13982] = {
+						requires = 376777,
+					},
+				},
+				Dungeons = {
+					[2085] = {
+						requires = 376777,
+					},					
+					[2093] = {
+						requires = 376777,
+					}
 				},
 			},
 		},

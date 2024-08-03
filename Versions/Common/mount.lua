@@ -42,9 +42,6 @@ function BeStride:Regular()
 	elseif self:IsShamanAndSpecial() then
 		self:DismountAndExit()
 		return self:Shaman()
-	elseif self:IsEvokerAndSpecial() then
-		self:DismountAndExit()
-		return self:Evoker()
 	elseif self:IsRogueAndSpecial() then
 		self:DismountAndExit()
 		return self:Rogue()
@@ -62,7 +59,7 @@ function BeStride:Regular()
 		return BeStride_Mount:Repair()
 	elseif IsMounted() then
 		if IsFlying() then
-			if self:IsFlyable() and BeStride:DBGet("settings.mount.nodismountwhileflying") ~= true then
+			if (self:IsFlyable() or self:IsDragonRidingZone()) and BeStride:DBGet("settings.mount.nodismountwhileflying") ~= true then
 				self:DismountAndExit()
 				if BeStride:DBGet("settings.mount.remount") then
 					return BeStride_Mount:Flying()
@@ -104,13 +101,16 @@ function BeStride:Regular()
 				return nil
 			end
 		end
+	elseif self:IsEvokerAndSpecial() then
+		self:DismountAndExit()
+		return self:Evoker()
 	elseif IsSwimming() and IsOutdoors() and BeStride:DBGet("settings.mount.noswimming") == false then
 		self:DismountAndExit()
 		return BeStride_Mount:Swimming()
 	elseif CanExitVehicle() then
 		self:DismountAndExit()
 		return BeStride_Mount:Regular()
-	elseif self:IsDragonRidingZone() then
+	elseif self:IsDragonRidingZone() then 		
 		return BeStride_Mount:Dragonriding()
 	elseif self:IsFlyable() and IsOutdoors() and IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") == true and #mountTable["passenger"] > 0 then
 		return BeStride_Mount:Passenger("flying")
